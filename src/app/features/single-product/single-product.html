@@ -1,0 +1,55 @@
+<app-header></app-header>
+<div class="w-full mx-auto px-2 lg:px-3 lg:max-w-screen-xl py-10 ">
+    <div class="container mx-auto">
+        <ng-container *ngIf="loading(); else productContent">
+            <app-single-product-skeleton></app-single-product-skeleton>
+        </ng-container>
+
+        <ng-template #productContent>
+            <div
+                class="flex-1 bg-white p-5 mb-5 rounded-lg shadow-md  hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div class="container mx-auto px-4 py-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                        <div class="lg:col-span-1">
+                            <img [src]="product()?.image" class="w-full " alt="User Image" />
+                        </div>
+                        <div class="lg:col-span-2 flex flex-col gap-3">
+
+                            <h2 class="text-2xl font-bold text-slate-800">
+                                {{ product()?.title }}
+                            </h2>
+
+                            <h3 class="text-gray-400">{{product()?.category}}</h3>
+                            <div class="flex items-center gap-1 ">
+                                <div class="flex items-center gap-1 ">
+                                    <div class="flex items-center gap-1">
+                                        <div class="flex items-center gap-1 text-yellow-400">
+                                            @for (i of stars; track i) {
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                [attr.fill]="i <= floorRate(product()?.rating?.rate) ? 'currentColor' : 'none'"
+                                                stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 17.27L18.18 21l-1.64-7.03
+               L22 9.24l-7.19-.61L12 2 9.19 8.63
+               2 9.24l5.46 4.73L5.82 21z" />
+                                            </svg>
+                                            }
+                                        </div>
+                                        ({{ product()?.rating?.count ?? '' }})
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <p>${{product()?.price}}</p>
+                        </div>
+                    </div>
+                </div>
+                <p>{{product()?.description}}</p>
+
+            </div>
+        </ng-template>
+    </div>
+</div>
+
+<app-footer></app-footer>

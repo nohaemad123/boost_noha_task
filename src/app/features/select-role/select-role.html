@@ -1,0 +1,21 @@
+<div class="min-h-screen flex items-center justify-center  px-4">
+    <div class="w-full max-w-lg bg-white rounded-2xl shadow-xl border border-slate-200
+           p-8 space-y-6">
+
+        <h2 class="text-center text-2xl font-semibold text-slate-800">
+            Choose role
+        </h2>
+
+        <div class="space-y-2">
+            <label class="block text-sm font-medium text-slate-600">
+                Role
+            </label>
+            <p-select [options]="roles" [(ngModel)]="selectedRole" placeholder="Select a role" class="w-full" />
+        </div>
+
+        <div class="flex justify-end pt-4">
+            <p-button [disabled]="!selectedRole" (click)="onSubmit()" label="Submit" severity="success"
+                class="shadow-md" />
+        </div>
+    </div>
+</div>

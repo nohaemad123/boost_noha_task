@@ -1,0 +1,35 @@
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+    <ng-container *ngIf="loading">
+        <div *ngFor="let _ of skeletonArray">
+            <p-card styleClass="shadow-md rounded-xl">
+                <ng-template #header>
+                    <p-skeleton class="w-full h-64 rounded-t-xl"></p-skeleton>
+                </ng-template>
+                <ng-template #title>
+                    <p-skeleton width="80%" class="mb-2"></p-skeleton>
+                </ng-template>
+                <ng-template #subtitle>
+                    <p-skeleton width="50%"></p-skeleton>
+                </ng-template>
+                <p>
+                    <p-skeleton width="30%"></p-skeleton>
+                </p>
+            </p-card>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="!loading">
+        <a *ngFor="let product of products" [routerLink]="['/products', product.id]" title="View product">
+            <p-card styleClass="shadow-md rounded-xl">
+                <ng-template #header>
+                    <img alt="Card" class="w-full h-100 object-cover rounded-t-xl" [src]="product.image" />
+                </ng-template>
+                <ng-template #title> {{ product.title }} </ng-template>
+                <ng-template #subtitle> {{ product.category }} </ng-template>
+                <p class="font-semibold mt-2">$ {{ product.price }}</p>
+            </p-card>
+        </a>
+    </ng-container>
+
+</div>

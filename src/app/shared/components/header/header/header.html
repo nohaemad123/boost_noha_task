@@ -1,0 +1,18 @@
+<header class="p-4 bg-slate-800 text-white">
+    <div class="container">
+        <div class="flex flex-col lg:flex-row gap-3 justify-between items-center ">
+            <span class="font-semibold text-lg">
+                Role Dashboard
+            </span>
+
+            <div class="flex items-center gap-3">
+                <span class="text-sm text-white">
+                    Role: {{ roleService.getRole() }}
+                </span>
+
+                <button pButton label="Change Role" class="p-button-sm" (click)="logout()">
+                </button>
+            </div>
+        </div>
+    </div>
+</header>

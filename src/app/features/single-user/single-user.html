@@ -1,0 +1,95 @@
+<app-header></app-header>
+
+<div class="w-full mx-auto px-2 lg:px-3 lg:max-w-screen-xl py-10">
+    <div class="container mx-auto">
+
+        <ng-container *ngIf="loading(); else userContent">
+            <app-single-user-skeleton></app-single-user-skeleton>
+        </ng-container>
+
+        <ng-template #userContent>
+            <div
+                class="flex-1 bg-white p-5 mb-5 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div class="lg:flex items-center gap-4 mt-2 text-sm text-gray-600">
+                    <h2 class="text-2xl font-bold text-gray-800">{{ user()?.name }}</h2>
+                    <span class="bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full font-medium">
+                        User ID: {{ user()?.id }}
+                    </span>
+                </div>
+
+                <div class="lg:flex items-center gap-4 mt-2 text-sm text-gray-600">
+                    <span class="flex flex-col lg:flex-row gap-3 items-center">
+                        <span
+                            class="flex px-3 py-1 rounded-full font-medium items-center gap-3 bg-green-50 text-green-600">
+                            <i class="pi pi-phone"></i> {{ user()?.phone }}
+                        </span>
+                        <span class="flex px-3 py-1 rounded-full font-medium items-center gap-3 bg-red-50 text-red-600">
+                            <i class="pi pi-envelope"></i> {{ user()?.email }}
+                        </span>
+                    </span>
+                </div>
+
+                <p class="flex gap-3 items-center mt-3">
+                    <i class="pi pi-globe"></i>
+                    <a [href]="user()?.website">{{ user()?.website }}</a>
+                </p>
+            </div>
+
+            <div
+                class="bg-white shadow-md rounded-xl p-6 mb-5 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <h2 class="text-xl font-semibold text-gray-700 mb-4 w-full border-b border-gray-300 pb-2">
+                    Address information
+                </h2>
+                <div class="grid grid-cols-2 gap-y-4 gap-x-6">
+                    <p class="flex flex-col gap-y-2">
+                        <span class="font-semibold text-lg">Street:</span>
+                        <span class="text-gray-700 text-md">{{ user()?.address?.street }}</span>
+                    </p>
+                    <p class="flex flex-col gap-y-2">
+                        <span class="font-semibold text-lg">City:</span>
+                        <span class="text-gray-700 text-md">{{ user()?.address?.city }}</span>
+                    </p>
+                    <p class="flex flex-col gap-y-2">
+                        <span class="font-semibold text-lg">Suite:</span>
+                        <span class="text-gray-700 text-md">{{ user()?.address?.suite }}</span>
+                    </p>
+                    <p class="flex flex-col gap-y-2">
+                        <span class="font-semibold text-lg">Zipcode:</span>
+                        <span class="text-gray-700 text-md">{{ user()?.address?.zipcode }}</span>
+                    </p>
+                    <p class="flex flex-col gap-y-2">
+                        <span class="font-semibold text-lg">Latitude:</span>
+                        <span class="text-gray-700 text-md">{{ user()?.address?.geo?.lat }}</span>
+                    </p>
+                    <p class="flex flex-col gap-y-2">
+                        <span class="font-semibold text-lg">Longitude:</span>
+                        <span class="text-gray-700 text-md">{{ user()?.address?.geo?.lng }}</span>
+                    </p>
+                </div>
+            </div>
+
+            <div
+                class="bg-white shadow-md rounded-lg p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <h2 class="text-xl font-semibold text-gray-700 mb-4 w-full border-b border-gray-300 pb-2">
+                    Employment information
+                </h2>
+                <div class="grid grid-cols-2 gap-y-4 gap-x-6">
+                    <p class="flex flex-col gap-y-2">
+                        <span class="font-semibold text-lg">Company name:</span>
+                        <span class="text-gray-700 text-md">{{ user()?.company?.name }}</span>
+                    </p>
+                    <p class="flex flex-col gap-y-2">
+                        <span class="font-semibold text-lg">Catch Phrase:</span>
+                        <span class="text-gray-700 text-md">{{ user()?.company?.catchPhrase }}</span>
+                    </p>
+                    <p class="flex flex-col gap-y-2">
+                        <span class="font-semibold text-lg">Business:</span>
+                        <span class="text-gray-700 text-md">{{ user()?.company?.bs }}</span>
+                    </p>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+</div>
+
+<app-footer></app-footer>
